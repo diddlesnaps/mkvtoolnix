@@ -1,0 +1,92 @@
+name: matroska-tools
+version: '9.6.0-0'
+summary: MKVToolNix is a set of tools to create, alter and inspect Matroska files
+description: |
+ Matroska is an extensible, open source, open standard Multimedia container.
+ Matroska is usually found as .MKV files (matroska video), .MKA files (matroska 
+ audio) and .MKS files (subtitles) and .MK3D files (stereoscopic/3D video).
+ It is also the basis for .webm (WebM) files.
+grade: devel
+confinement: strict
+
+apps:
+  gui:
+    command: desktop-launch mkvtoolnix-gui
+    plugs: [home, unity7]
+  extract:
+    command: desktop-launch mkvextract
+    plugs: [home, unity7]
+  info:
+    command: desktop-launch mkvinfo
+    plugs: [home, unity7]
+  merge:
+    command: desktop-launch mkvmerge
+    plugs: [home, unity7]
+  properdit:
+    command: desktop-launch propedit
+    plugs: [home, unity7]
+
+parts:
+  mkvtoolnix:
+    plugin: autodrake
+    source: https://mkvtoolnix.download/sources/mkvtoolnix-9.6.0.tar.xz
+    configflags:
+      - --enable-gui
+    after: [libmatroska, desktop-qt5]
+    build-packages:
+      - libboost-math-dev
+      - libboost-regex-dev
+      - libbz2-dev
+      - libflac-dev
+      - libmagic-dev
+      - libogg-dev
+      - libpcre3-dev
+      - libvorbis-dev
+      - ruby
+      - liblzo2-dev
+      - zlib1g-dev
+      - libcurl4-gnutls-dev
+      - pkg-config
+      - libboost-date-time-dev
+      - libboost-filesystem-dev
+      - libpugixml-dev
+      - qt5-default
+    snap:
+      - share/applications
+      - snare/man
+
+  libebml:
+    plugin: autotools
+    source: https://dl.matroska.org/downloads/libebml/libebml-1.3.4.tar.bz2
+    build-packages:
+      - pkg-config
+      - g++
+    snap:
+      - -include
+      - -lib/*.a
+      - -lib/pkgconfig
+
+  libmatroska:
+    plugin: autotools
+    source: https://dl.matroska.org/downloads/libmatroska/libmatroska-1.4.5.tar.bz2
+    after: [libebml]
+    build-packages:
+      - pkg-config
+      - g++
+    snap:
+      - -include
+      - -lib/*.a
+      - -lib/pkgconfig
+
+  desktop-qt5:
+    snap:
+      - -usr/include
+      - -usr/share/apport
+      - -usr/share/doc
+      - -usr/share/doc-base
+      - -usr/share/libthai
+      - -usr/share/lintian
+      - -usr/share/man
+      - -usr/share/pkgconfig
+      - -var
+
