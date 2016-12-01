@@ -1,5 +1,5 @@
 name: matroska-tools
-version: '9.6.0-0'
+version: '9.6.0-1'
 summary: MKVToolNix is a set of tools to create, alter and inspect Matroska files
 description: |
  Matroska is an extensible, open source, open standard Multimedia container.
