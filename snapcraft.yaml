@@ -12,19 +12,19 @@ confinement: strict
 apps:
   gui:
     command: desktop-launch mkvtoolnix-gui
-    plugs: [home, unity7]
+    plugs: [process-control, network-bind, home, unity7]
   extract:
     command: desktop-launch mkvextract
-    plugs: [home, unity7]
+    plugs: [process-control, home]
   info:
     command: desktop-launch mkvinfo
-    plugs: [home, unity7]
+    plugs: [process-control, home, unity7]
   merge:
     command: desktop-launch mkvmerge
-    plugs: [home, unity7]
-  properdit:
-    command: desktop-launch propedit
-    plugs: [home, unity7]
+    plugs: [process-control, home]
+  propedit:
+    command: desktop-launch mkvpropedit
+    plugs: [process-control, home]
 
 parts:
   mkvtoolnix:
@@ -52,8 +52,8 @@ parts:
       - libpugixml-dev
       - qt5-default
     snap:
-      - share/applications
-      - snare/man
+      - -share/applications
+      - -share/man
 
   libebml:
     plugin: autotools
