@@ -111,7 +111,7 @@ class AutotoolsPlugin(snapcraft.BasePlugin):
                 self.run(['autoreconf', '-i'])
 
         configure_command = ['./configure']
-        make_install_command = ['./drake', 'install']
+        make_install_command = ['rake', 'install']
 
         if self.install_via_destdir:
             # Use an empty prefix since we'll install via DESTDIR
@@ -121,7 +121,7 @@ class AutotoolsPlugin(snapcraft.BasePlugin):
             configure_command.append('--prefix=' + self.installdir)
 
         self.run(configure_command + self.options.configflags)
-        self.run(['./drake', '-j{}'.format(self.parallel_build_count)])
+        self.run(['rake', '-j{}'.format(self.parallel_build_count)])
         self.run(make_install_command)
 
     def snap_fileset(self):
