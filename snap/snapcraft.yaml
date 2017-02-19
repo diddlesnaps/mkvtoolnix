@@ -42,6 +42,10 @@ parts:
       - libogg-dev
       - libpcre3-dev
       - libvorbis-dev
+      - libgtest-dev
+      - pandoc
+      - docbook-xsl
+      - xsltproc
       - ruby
       - liblzo2-dev
       - zlib1g-dev
