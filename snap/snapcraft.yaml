@@ -30,8 +30,6 @@ parts:
   mkvtoolnix:
     plugin: autorake
     source: https://mkvtoolnix.download/sources/mkvtoolnix-11.0.0.tar.xz
-    configflags:
-      - --enable-gui
     after: [libmatroska, desktop-qt5]
     build-packages:
       - libboost-math-dev
@@ -55,6 +53,7 @@ parts:
       - libboost-filesystem-dev
       - libpugixml-dev
       - qt5-default
+      - qtmultimedia5-dev
     prime:
       - -share/applications
       - -share/man
