@@ -39,13 +39,15 @@ In addition, this plugin uses the following plugin-specific keywords:
       'destdir')
 """
 
+# JZ: modified to use rake
+
 import os
 import stat
 
 import snapcraft
+from subprocess import CalledProcessError
 
-
-class AutotoolsPlugin(snapcraft.BasePlugin):
+class AutorakePlugin(snapcraft.BasePlugin):
 
     @classmethod
     def schema(cls):
@@ -121,8 +123,15 @@ class AutotoolsPlugin(snapcraft.BasePlugin):
             configure_command.append('--prefix=' + self.installdir)
 
         self.run(configure_command + self.options.configflags)
-        self.run(['rake', '-j{}'.format(self.parallel_build_count)])
-        self.run(make_install_command)
+        try:
+            self.run(['rake', '-j{}'.format(self.parallel_build_count)])
+        except CalledProcessError:
+            pass # rake returns non-zero but that's OK.
+
+        try:
+            self.run(make_install_command)
+        except CalledProcessError:
+            pass # rake returns non-zero but that's OK.
 
     def snap_fileset(self):
         fileset = super().snap_fileset()
