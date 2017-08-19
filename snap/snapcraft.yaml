@@ -68,7 +68,7 @@ parts:
 
   libebml:
     plugin: autotools
-    source: https://dl.matroska.org/downloads/libebml/libebml-1.3.5.tar.bz2
+    source: https://dl.matroska.org/downloads/libebml/libebml-1.3.5.tar.xz
     build-packages:
       - pkg-config
       - g++
