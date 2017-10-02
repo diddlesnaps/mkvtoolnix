@@ -1,5 +1,5 @@
 name: mkvtoolnix-jz
-version: '15.0.0-0'
+version: '16.0.0-0'
 summary: MKVToolNix is a set of tools to create, alter and inspect Matroska files
 description: |
  Matroska is an extensible, open source, open standard Multimedia container.
@@ -12,13 +12,13 @@ confinement: strict
 apps:
   gui:
     command: desktop-launch mkvtoolnix-gui
-    plugs: [process-control, network-bind, home, unity7]
+    plugs: [process-control, network-bind, home, desktop, desktop-legacy, x11, wayland]
   extract:
     command: desktop-launch mkvextract
     plugs: [process-control, home]
   info:
     command: desktop-launch mkvinfo
-    plugs: [process-control, home, unity7]
+    plugs: [process-control, home, desktop, desktop-legacy, x11, wayland]
   merge:
     command: desktop-launch mkvmerge
     plugs: [process-control, home]
@@ -29,7 +29,7 @@ apps:
 parts:
   mkvtoolnix:
     plugin: autorake
-    source: https://mkvtoolnix.download/sources/mkvtoolnix-15.0.0.tar.xz
+    source: https://mkvtoolnix.download/sources/mkvtoolnix-16.0.0.tar.xz
     after: [libmatroska, desktop-qt5]
     build-packages:
       - libboost-math-dev
@@ -59,6 +59,7 @@ parts:
       - libqt5libqgtk2
       - gtk2-engines-pixbuf
       - libpng12-0
+      - libmagic1
     prime:
       - -share/applications
       - -share/man
@@ -79,7 +80,7 @@ parts:
 
   libmatroska:
     plugin: autotools
-    source: https://dl.matroska.org/downloads/libmatroska/libmatroska-1.4.7.tar.bz2
+    source: https://dl.matroska.org/downloads/libmatroska/libmatroska-1.4.8.tar.xz
     after: [libebml]
     build-packages:
       - pkg-config
