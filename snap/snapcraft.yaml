@@ -1,5 +1,5 @@
 name: mkvtoolnix-jz
-version: '17.0.0-0'
+version: '18.0.0'
 summary: MKVToolNix is a set of tools to create, alter and inspect Matroska files
 description: |
  Matroska is an extensible, open source, open standard Multimedia container.
@@ -29,7 +29,7 @@ apps:
 parts:
   mkvtoolnix:
     plugin: autorake
-    source: https://mkvtoolnix.download/sources/mkvtoolnix-17.0.0.tar.xz
+    source: https://mkvtoolnix.download/sources/mkvtoolnix-18.0.0.tar.xz
     after: [libmatroska, desktop-qt5]
     build-packages:
       - libboost-math-dev
