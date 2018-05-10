@@ -68,7 +68,7 @@ parts:
       strip $SNAPCRAFT_PART_INSTALL/bin/* 2>/dev/null || /bin/true
 
   libebml:
-    plugin: autotools
+    plugin: cmake
     source: https://dl.matroska.org/downloads/libebml/libebml-1.3.6.tar.xz
     build-packages:
       - pkg-config
@@ -90,7 +90,7 @@ parts:
       - -lib/pkgconfig
 
   libmatroska:
-    plugin: autotools
+    plugin: cmake
     source: https://dl.matroska.org/downloads/libmatroska/libmatroska-1.4.9.tar.xz
     after: [libebml]
     build-packages:
