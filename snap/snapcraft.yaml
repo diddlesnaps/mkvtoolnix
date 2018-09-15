@@ -8,6 +8,7 @@ description: |
  It is also the basis for .webm (WebM) files.
 grade: stable
 confinement: strict
+base: core18
 
 apps:
   gui:
