@@ -117,7 +117,7 @@ class AutotorakePlugin(make.MakePlugin):
                 self.run(["autoreconf", "-i"])
 
         configure_command = ["./configure"]
-        make_install_command = ['rake', 'install' 'DESTDIR={}'.format(self.installdir)]
+        make_install_command = ['rake', 'DESTDIR={}'.format(self.installdir), 'install']
 
         if self.options.make_install_var:
             # Use an empty prefix since we'll install via DESTDIR
