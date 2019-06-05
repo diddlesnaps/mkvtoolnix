@@ -61,8 +61,6 @@ parts:
       - libboost-regex1.65.1
       - libmagic1
       - libpugixml1v5
-      - libqt5multimedia5
-      - qtwayland5
     prime:
       - -usr/lib/*/qt5
       - -share/applications
@@ -115,6 +113,8 @@ parts:
       - dpkg-dev
       - qtbase5-dev
     stage-packages:
+      - libqt5multimedia5
+      - qtwayland5
       - libxkbcommon0
       - ttf-ubuntu-font-family
       - dmz-cursor-theme
